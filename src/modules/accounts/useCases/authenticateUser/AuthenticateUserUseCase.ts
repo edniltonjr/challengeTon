@@ -1,7 +1,7 @@
 import { compare } from "bcrypt";
 import { sign } from "jsonwebtoken";
 
-import { prisma } from "../../../../database/prismaClient";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IAuthenticateUser {
   email: string;
@@ -9,10 +9,10 @@ interface IAuthenticateUser {
 }
 
 export class AuthenticateUserUseCase {
+  constructor(private usersRepository: IUsersRepository) {}
+
   async execute({ email, password }: IAuthenticateUser) {
-    const user = await prisma.users.findFirst({
-      where: { email },
-    });
+    const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
       throw new Error("Username or password invalid!");

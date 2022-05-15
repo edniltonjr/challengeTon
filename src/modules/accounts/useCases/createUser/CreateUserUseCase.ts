@@ -1,6 +1,6 @@
 import { hash } from "bcrypt";
 
-import { prisma } from "../../../../database/prismaClient";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface ICreateUser {
   name: string;
@@ -9,12 +9,10 @@ interface ICreateUser {
 }
 
 export class CreateUserUseCase {
+  constructor(private usersRepository: IUsersRepository) {}
+
   async execute({ name, email, password }: ICreateUser) {
-    const userExist = await prisma.users.findFirst({
-      where: {
-        email,
-      },
-    });
+    const userExist = await this.usersRepository.findByEmail(email);
 
     if (userExist) {
       throw new Error("User already exists");
@@ -22,8 +20,10 @@ export class CreateUserUseCase {
 
     const hashPassword = await hash(password, 10);
 
-    const user = await prisma.users.create({
-      data: { email, name, password: hashPassword },
+    const user = await this.usersRepository.create({
+      email,
+      name,
+      password: hashPassword,
     });
 
     return user;
