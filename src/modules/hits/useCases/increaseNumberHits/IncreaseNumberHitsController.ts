@@ -1,10 +1,15 @@
 import { Request, Response } from "express";
 
+import { CountApiProvider } from "../../../../shared/infra/adapters/providers/CounterHits/implementations/CountApi";
 import { IncreaseNumberHitsUseCase } from "./IncreaseNumberHitsUseCase";
 
 class IncreaseNumberHitsController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const increaseNumberHitsUseCase = new IncreaseNumberHitsUseCase();
+    const countHitsProvider = new CountApiProvider();
+
+    const increaseNumberHitsUseCase = new IncreaseNumberHitsUseCase(
+      countHitsProvider
+    );
 
     const increase = await increaseNumberHitsUseCase.execute();
 

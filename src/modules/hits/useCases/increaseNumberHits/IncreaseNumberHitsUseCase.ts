@@ -1,11 +1,10 @@
-import axios from "axios";
+import { ICountsHitsProvider } from "../../../../shared/infra/adapters/providers/CounterHits/ICounterHits";
 
 export class IncreaseNumberHitsUseCase {
-  async execute() {
-    const apiHits = process.env.API_HITS;
-    const urlTon = process.env.URL_TON;
+  constructor(private counterHitsProvider: ICountsHitsProvider) {}
 
-    const { data } = await axios.get(`${apiHits}/update/${urlTon}/?amount=1`);
+  async execute() {
+    const data = await this.counterHitsProvider.addHit();
 
     return data;
   }
