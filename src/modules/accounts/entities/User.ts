@@ -1,16 +1,20 @@
+import { v4 as uuidV4 } from "uuid";
+
 class User {
-  id: string;
+  id?: string;
   name: string;
   email: string;
   password: string;
 
   constructor(data: {
-    id: string;
+    id?: string;
     name: string;
     email: string;
     password: string;
   }) {
-    this.id = data.id;
+    if (!this.id) {
+      this.id = uuidV4();
+    }
     this.email = data.email;
     this.name = data.name;
     this.password = data.password;

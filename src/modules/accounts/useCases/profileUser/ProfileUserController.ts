@@ -1,15 +1,13 @@
 import { Request, Response } from "express";
+import { container } from "tsyringe";
 
-import UsersRepository from "../../../../shared/infra/adapters/repositories/database/prisma/users/UsersRepository";
 import { ProfileUserUseCase } from "./ProfileUserUseCase";
 
 class ProfileUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id } = request.user;
 
-    const usersRepository = new UsersRepository();
-
-    const profileUserUseCase = new ProfileUserUseCase(usersRepository);
+    const profileUserUseCase = container.resolve(ProfileUserUseCase);
 
     const user = await profileUserUseCase.execute(id);
 

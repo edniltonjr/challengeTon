@@ -1,4 +1,5 @@
 import { hash } from "bcrypt";
+import { inject, injectable } from "tsyringe";
 
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
@@ -8,9 +9,12 @@ interface ICreateUser {
   password: string;
 }
 
+@injectable()
 export class CreateUserUseCase {
-  constructor(private usersRepository: IUsersRepository) {}
-
+  constructor(
+    @inject("UsersRepository")
+    private usersRepository: IUsersRepository
+  ) {}
   async execute({ name, email, password }: ICreateUser) {
     const userExist = await this.usersRepository.findByEmail(email);
 
@@ -25,7 +29,6 @@ export class CreateUserUseCase {
       name,
       password: hashPassword,
     });
-
     return user;
   }
 }
