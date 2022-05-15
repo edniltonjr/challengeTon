@@ -24,7 +24,7 @@ export class AuthenticateUserUseCase {
       throw new Error("Username or password invalid!");
     }
 
-    const token = sign({ email }, process.env.SECRET_KEY, {
+    const token = sign({ email }, process.env.SECRET_KEY as string, {
       subject: user.id,
       expiresIn: "1d",
     });
