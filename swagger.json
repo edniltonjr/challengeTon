@@ -9,6 +9,55 @@
       }
   },
   "paths": {
+    "/hits/count": {
+      "get": {
+          "tags": ["Hits"],
+          "sumary": "Count Hits",
+          "description": "Count Hits Acces of TON (ton.com.br)",
+          "responses": {
+              "200": {
+                  "description": "Success",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+    },
+
+    "/hits/increase": {
+      "get": {
+          "tags": ["Hits"],
+          "sumary": "Increase Hits",
+          "description": "Increase Hits Acces of TON (ton.com.br)",
+          "responses": {
+              "200": {
+                  "description": "Success",
+                  "content": {
+                      "application/json": {
+                          "schema": {
+                              "type": "object",
+                              "properties": {
+                                "value": {
+                                    "type": "string"
+                                }
+                            }
+                          }
+                      }
+                  }
+              }
+          }
+      }
+    },
       "/auth": {
         "post": {
             "tags": ["Auth"],
