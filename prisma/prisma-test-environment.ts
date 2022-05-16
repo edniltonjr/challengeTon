@@ -28,7 +28,6 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
 
     this.schema = `test_${crypto.randomUUID()}`;
     this.connectionString = `postgresql://${dbUser}:${dbPass}@${dbHost}:${dbPort}/${dbName}?schema=${this.schema}`;
-    console.log(this.connectionString);
   }
 
   async setup() {

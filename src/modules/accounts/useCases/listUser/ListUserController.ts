@@ -6,7 +6,6 @@ import { ListUserUseCase } from "./ListUserUseCase";
 class ListUserController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { id, email } = request.query;
-    console.log(id);
 
     const listUserUseCase = container.resolve(ListUserUseCase);
 

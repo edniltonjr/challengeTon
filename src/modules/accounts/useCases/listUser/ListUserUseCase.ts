@@ -14,7 +14,6 @@ export class ListUserUseCase {
     private usersRepository: IUsersRepository
   ) {}
   async execute({ id, email }: ISearchUser) {
-    console.log(id, "id");
     const users = await this.usersRepository.list(id, email);
 
     return users;
