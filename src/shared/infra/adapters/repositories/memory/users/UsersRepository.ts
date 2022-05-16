@@ -9,6 +9,10 @@ class UsersRepository implements IUsersRepository {
     this.users = [];
   }
 
+  async list(): Promise<User[]> {
+    return this.users;
+  }
+
   async create({ name, email, password }: ICreateUserDTO): Promise<User> {
     const user = new User({
       name,
