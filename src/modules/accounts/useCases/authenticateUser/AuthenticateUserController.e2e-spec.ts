@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../../../app";
+import { app } from "../../../../shared/infra/http/app";
 
 describe("[E2E] - Authenticate User", () => {
   it("should be able to authenticate an user", async () => {

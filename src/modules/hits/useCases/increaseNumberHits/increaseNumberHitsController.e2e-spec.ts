@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../../../app";
+import { app } from "../../../../shared/infra/http/app";
 
 describe("[E2E] - Increase Hits on website ton.com.br", () => {
   it("should be able to increase hits of acces website ton.com.br", async () => {

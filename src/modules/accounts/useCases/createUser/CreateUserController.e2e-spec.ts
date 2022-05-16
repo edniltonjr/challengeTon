@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../../../app";
+import { app } from "../../../../shared/infra/http/app";
 
 describe("[E2E] - Create a User", () => {
   it("should be able to create a new user", async () => {

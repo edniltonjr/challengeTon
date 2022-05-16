@@ -1,6 +1,6 @@
 import request from "supertest";
 
-import { app } from "../../../../app";
+import { app } from "../../../../shared/infra/http/app";
 
 describe("[E2E] - Show Profile", () => {
   it("should be able to show profile user authenticated", async () => {

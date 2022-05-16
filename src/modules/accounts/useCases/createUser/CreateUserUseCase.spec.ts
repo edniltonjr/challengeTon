@@ -1,5 +1,5 @@
 import "dotenv/config";
-
+import { AppError } from "../../../../shared/errors/AppError";
 import { UsersRepository } from "../../../../shared/infra/adapters/repositories/memory/users/UsersRepository";
 import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
 import { CreateUserUseCase } from "./CreateUserUseCase";
@@ -41,6 +41,6 @@ describe("Create a User", () => {
         email: user.email,
         password: user.password,
       })
-    ).rejects.toEqual(new Error("User already exists"));
+    ).rejects.toEqual(new AppError("User already exists"));
   });
 });
