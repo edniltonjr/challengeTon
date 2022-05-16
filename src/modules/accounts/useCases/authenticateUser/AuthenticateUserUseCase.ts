@@ -19,13 +19,13 @@ export class AuthenticateUserUseCase {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new Error("Username or password invalid!");
+      throw new Error("Email or passowrd incorrect");
     }
 
     const passwordMatch = await compare(password, user.password);
 
     if (!passwordMatch) {
-      throw new Error("Username or password invalid!");
+      throw new Error("Email or passowrd incorrect");
     }
 
     const token = sign({ email }, process.env.SECRET_KEY as string, {
@@ -33,6 +33,6 @@ export class AuthenticateUserUseCase {
       expiresIn: "1d",
     });
 
-    return token;
+    return { token };
   }
 }

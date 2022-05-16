@@ -1,10 +1,12 @@
 import "reflect-metadata";
+import "dotenv/config";
+
 import express, { NextFunction, Request, Response } from "express";
-import "./shared/container";
 
 import "express-async-errors";
-import "dotenv/config";
 import { routes } from "./shared/infra/http/routes";
+
+import "./shared/container";
 
 const app = express();
 

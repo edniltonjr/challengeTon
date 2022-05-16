@@ -21,7 +21,10 @@ export async function ensureAuthenticateUser(
   const [, token] = authHeader.split(" ");
 
   try {
-    const { sub: user_id } = verify(token, process.env.SECRET_KEY) as IPayload;
+    const { sub: user_id } = verify(
+      token,
+      process.env.SECRET_KEY as string
+    ) as IPayload;
 
     request.user = {
       id: user_id,
