@@ -41,7 +41,7 @@ Este projeto foi desenvolvido com as seguintes tecnologias:
   # Inicie a aplicação 
   $ npm run dev ou yarn dev
 
-  # Para acessar a documentação (Swagger), basta ir na rota: */api-docks*
+  # Para acessar a documentação (Swagger), basta ir na rota: /api-docs
   $ npm run dev ou yarn dev
 
 ```
